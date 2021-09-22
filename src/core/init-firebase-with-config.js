@@ -1,35 +1,13 @@
-import { getApps, initializeApp } from 'firebase/app';
+import { getApp, initializeApp } from 'firebase/app';
 
 import { FIREBASE_DEFAULT_APPNAME } from '../constants';
 
-function initFirebaseWithConfig(
-  {
-    apiKey,
-    appId,
-    authDomain,
-    databaseURL,
-    messagingSenderId,
-    projectId,
-    storageBucket,
-  },
-  name = FIREBASE_DEFAULT_APPNAME
-) {
-  let app = getApps(name);
+function initFirebaseWithConfig(config, name = FIREBASE_DEFAULT_APPNAME) {
+  let app = getApp(name);
   if (app) return app;
 
   try {
-    app = initializeApp(
-      {
-        apiKey,
-        appId,
-        authDomain,
-        databaseURL,
-        messagingSenderId,
-        projectId,
-        storageBucket,
-      },
-      name
-    );
+    app = initializeApp(config, name);
   } catch (err) {
     if (err.code !== 'app/duplicate-app') {
       throw err;

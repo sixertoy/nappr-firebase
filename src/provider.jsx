@@ -16,8 +16,8 @@ import {
 } from './core';
 
 const FirebaseAuthProvider = ({ children, config, name, persistence }) => {
-  const changeListener = useRef(null);
   const firebaseApp = initFirebaseWithConfig(config, name);
+  const changeListener = useRef(null);
 
   const [state, setState] = useState({
     firebase: firebaseApp,
