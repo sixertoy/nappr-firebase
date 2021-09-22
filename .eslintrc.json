@@ -1,5 +1,5 @@
 {
-  "extends": ["airbnb", "prettier", "prettier/react"],
+  "extends": ["airbnb", "prettier"],
   "plugins": [
     "prettier",
     "simple-import-sort",
@@ -20,7 +20,8 @@
       }
     ],
     "prettier/prettier": "error",
-    "simple-import-sort/sort": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
     "sort-destructure-keys/sort-destructure-keys": "error",
     "sort-imports": "off",
     "sort-keys": ["error", "asc"],
