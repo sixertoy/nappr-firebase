@@ -1,6 +1,6 @@
 {
   "name": "@nappr/nappr-firebase-auth",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Firebase Auth React Helper",
   "main": "lib/nappr-firebase-auth.js",
   "module": "lib/nappr-firebase-auth.esm.js",
@@ -74,7 +74,7 @@
     "react-dom": "^16.13.1"
   },
   "dependencies": {
-    "firebase": "^9.0.2"
+    "lodash.get": "^4.4.2"
   },
   "scripts": {
     "test": "jest --coverage",
@@ -84,8 +84,5 @@
     "prebuild": "rm -rf lib",
     "build": "rollup -c",
     "prepare": "npm run build"
-  },
-  "dependencies": {
-    "lodash.get": "^4.4.2"
   }
 }
