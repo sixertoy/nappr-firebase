@@ -1,6 +1,6 @@
 {
   "name": "@nappr/nappr-firebase-auth",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Firebase Auth React Helper",
   "main": "lib/nappr-firebase-auth.js",
   "module": "lib/nappr-firebase-auth.esm.js",
