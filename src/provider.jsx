@@ -1,3 +1,4 @@
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import get from 'lodash.get';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -8,17 +9,12 @@ import {
   initFirebaseWithConfig,
 } from './core';
 
-const FirebaseAuthProvider = ({
-  children,
-  config,
-  initializeApp,
-  persistence,
-}) => {
-  const app = initFirebaseWithConfig(initializeApp, config);
+const FirebaseAuthProvider = ({ children, config, persistence }) => {
+  const firebaseApp = initFirebaseWithConfig(config);
   const changeListener = useRef(null);
 
   const [state, setState] = useState({
-    firebase: app,
+    firebase: firebaseApp,
     isAnonymous: true,
     isReady: false,
     isSignedIn: false,
@@ -33,7 +29,7 @@ const FirebaseAuthProvider = ({
       const isAnonymous = get(user, 'isAnonymous', true);
       const providerId = get(user, 'providerData.0.providerId', null);
       setState({
-        firebase: app,
+        firebase: firebaseApp,
         isAnonymous,
         isReady,
         isSignedIn,
@@ -41,19 +37,21 @@ const FirebaseAuthProvider = ({
         user,
       });
     },
-    [app]
+    [firebaseApp]
   );
 
   useEffect(() => {
     if (!changeListener.current) {
-      app.auth().setPersistence(persistence);
-      changeListener.current = app.auth().onAuthStateChanged(onAuthChange);
+      const auth = getAuth(firebaseApp);
+      auth.setPersistence(persistence);
+      onAuthStateChanged(auth, onAuthChange);
+      changeListener.current = auth;
     }
     return () => {
       const removeChangedListener = changeListener.current;
       removeChangedListener();
     };
-  }, [app, onAuthChange, persistence]);
+  }, [firebaseApp, onAuthChange, persistence]);
 
   return (
     <FirebaseAuthContext.Provider value={state}>

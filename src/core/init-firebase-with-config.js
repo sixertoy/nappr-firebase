@@ -1,17 +1,16 @@
+import { initializeApp } from 'firebase/app';
+
 let FIREBASE_APP_SINGLETON = null;
 
-function initFirebaseWithConfig(
-  initializeApp,
-  {
-    apiKey,
-    appId,
-    authDomain,
-    databaseURL,
-    messagingSenderId,
-    projectId,
-    storageBucket,
-  }
-) {
+function initFirebaseWithConfig({
+  apiKey,
+  appId,
+  authDomain,
+  databaseURL,
+  messagingSenderId,
+  projectId,
+  storageBucket,
+}) {
   // const countApps = firebase.apps.length
   // if (!countApps) { return FIREBASE_APP_SINGLETON;
   if (FIREBASE_APP_SINGLETON) {
