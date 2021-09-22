@@ -1,7 +1,7 @@
 let FIREBASE_APP_SINGLETON = null;
 
 function initFirebaseWithConfig(
-  firebase,
+  initializeApp,
   {
     apiKey,
     appId,
@@ -18,7 +18,7 @@ function initFirebaseWithConfig(
     return FIREBASE_APP_SINGLETON;
   }
   try {
-    FIREBASE_APP_SINGLETON = firebase.initializeApp({
+    FIREBASE_APP_SINGLETON = initializeApp({
       apiKey,
       appId,
       authDomain,
