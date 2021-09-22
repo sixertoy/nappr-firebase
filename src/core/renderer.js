@@ -14,7 +14,9 @@ export const renderWithProps = (children, props) => {
   const isFunction = typeof children === 'function';
   if (isFunction) return children(props);
 
-  const isListOfChildrens = Children.count(children).length > 0;
+  const isListOfChildrens =
+    (Array.isArray(children) && children.length > 0) ||
+    Children.count(children).length > 0;
   if (isListOfChildrens) {
     // return Children.map((p, child) => cloneChildWithProps(child, props));
     return children;

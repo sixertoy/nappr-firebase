@@ -1,9 +1,7 @@
-const ENV = process.env;
+import { FIREBASE_KEY_PREFIX } from '../constants';
 
-export const FIREBASE_KEY_PREFIX = 'FIREBASE_';
-
-const getFirebaseConfig = () => {
-  const keys = Object.entries(ENV);
+const getConfig = () => {
+  const keys = Object.entries(process.env);
   const filtered = keys.filter(a => a[0].indexOf(FIREBASE_KEY_PREFIX) !== -1);
   if (!filtered.length) {
     throw new Error('Unable to load firebase configuration');
@@ -19,4 +17,4 @@ const getFirebaseConfig = () => {
   return config;
 };
 
-export default getFirebaseConfig;
+export default getConfig;

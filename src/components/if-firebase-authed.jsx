@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { FirebaseAuthContext, renderer } from '../core';
+import { FirebaseContext } from '../context';
+import { renderer } from '../core';
 
 const IfFirebaseAuthed = React.memo(({ children }) => (
-  <FirebaseAuthContext.Consumer>
+  <FirebaseContext.Consumer>
     {state => {
       const { isSignedIn } = state;
       if (!isSignedIn) return null;
       return renderer(children, state);
     }}
-  </FirebaseAuthContext.Consumer>
+  </FirebaseContext.Consumer>
 ));
 
 IfFirebaseAuthed.propTypes = {
