@@ -1,37 +1,41 @@
-import { initializeApp } from 'firebase/app';
+import { getApps, initializeApp } from 'firebase/app';
 
-let FIREBASE_APP_SINGLETON = null;
+import { FIREBASE_DEFAULT_APPNAME } from '../constants';
 
-function initFirebaseWithConfig({
-  apiKey,
-  appId,
-  authDomain,
-  databaseURL,
-  messagingSenderId,
-  projectId,
-  storageBucket,
-}) {
-  // const countApps = firebase.apps.length
-  // if (!countApps) { return FIREBASE_APP_SINGLETON;
-  if (FIREBASE_APP_SINGLETON) {
-    return FIREBASE_APP_SINGLETON;
-  }
+function initFirebaseWithConfig(
+  {
+    apiKey,
+    appId,
+    authDomain,
+    databaseURL,
+    messagingSenderId,
+    projectId,
+    storageBucket,
+  },
+  name = FIREBASE_DEFAULT_APPNAME
+) {
+  let app = getApps(name);
+  if (app) return app;
+
   try {
-    FIREBASE_APP_SINGLETON = initializeApp({
-      apiKey,
-      appId,
-      authDomain,
-      databaseURL,
-      messagingSenderId,
-      projectId,
-      storageBucket,
-    });
+    app = initializeApp(
+      {
+        apiKey,
+        appId,
+        authDomain,
+        databaseURL,
+        messagingSenderId,
+        projectId,
+        storageBucket,
+      },
+      name
+    );
   } catch (err) {
     if (err.code !== 'app/duplicate-app') {
       throw err;
     }
   }
-  return FIREBASE_APP_SINGLETON;
+  return app;
 }
 
 export default initFirebaseWithConfig;

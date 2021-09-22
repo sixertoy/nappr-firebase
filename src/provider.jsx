@@ -4,14 +4,20 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import {
+  FIREBASE_AUTH_LOCAL,
+  FIREBASE_AUTH_NONE,
+  FIREBASE_AUTH_SESSION,
+  FIREBASE_DEFAULT_APPNAME,
+} from './constants';
+import {
   FirebaseAuthContext,
   getFirebaseConfig,
   initFirebaseWithConfig,
 } from './core';
 
-const FirebaseAuthProvider = ({ children, config, persistence }) => {
-  const firebaseApp = initFirebaseWithConfig(config);
+const FirebaseAuthProvider = ({ children, config, name, persistence }) => {
   const changeListener = useRef(null);
+  const firebaseApp = initFirebaseWithConfig(config, name);
 
   const [state, setState] = useState({
     firebase: firebaseApp,
@@ -62,7 +68,8 @@ const FirebaseAuthProvider = ({ children, config, persistence }) => {
 
 FirebaseAuthProvider.defaultProps = {
   config: getFirebaseConfig(),
-  persistence: 'local',
+  name: FIREBASE_DEFAULT_APPNAME,
+  persistence: FIREBASE_AUTH_LOCAL,
 };
 
 FirebaseAuthProvider.propTypes = {
@@ -76,11 +83,11 @@ FirebaseAuthProvider.propTypes = {
     projectId: PropTypes.string.isRequired,
     storageBucket: PropTypes.string.isRequired,
   }),
-  firebase: PropTypes.shape().isRequired,
+  name: PropTypes.string,
   persistence: PropTypes.oneOf([
-    'local', // firebase.auth.Auth.Persistence.LOCAL,
-    'sesssion', // firebase.auth.Auth.Persistence.SESSION,
-    'none', // firebase.auth.Auth.Persistence.NONE,
+    FIREBASE_AUTH_LOCAL, // firebase.auth.Auth.Persistence.LOCAL,
+    FIREBASE_AUTH_SESSION, // firebase.auth.Auth.Persistence.SESSION,
+    FIREBASE_AUTH_NONE, // firebase.auth.Auth.Persistence.NONE,
   ]),
 };
 

@@ -1,2 +1,4 @@
-export const FIREBASE_AUTH_LOCAL = 'local';
-export const FIREBASE_AUTH_SESSION = 'session';
+export const FIREBASE_DEFAULT_APPNAME = 'DEFAULT';
+export const FIREBASE_AUTH_NONE = 'NONE';
+export const FIREBASE_AUTH_LOCAL = 'LOCAL';
+export const FIREBASE_AUTH_SESSION = 'SESSION';
