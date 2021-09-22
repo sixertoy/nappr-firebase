@@ -11,8 +11,6 @@ yarn add @nappr/nappr-firebase-auth firebase
 ## Usage
 
 ```javascript
-import 'firebase/auth';
-import firebase from 'firebase/app';
 import {
   FirebaseAuthProvider,
   FIREBASE_AUTH_LOCAL, // default
@@ -21,10 +19,23 @@ import {
 const Root = () => (
   <StrictMode>
     ...
-    <FirebaseAuthProvider firebase={firebase} persistence={FIREBASE_AUTH_LOCAL}>
+    <FirebaseAuthProvider persistence={FIREBASE_AUTH_LOCAL}>
       ...
     </FirebaseAuthProvider>
     ...
   </StrictMode>
 );
+```
+
+**.env file variables**
+
+```bash
+REACT_APP_FIREBASE_apiKey=
+REACT_APP_FIREBASE_authDomain=
+REACT_APP_FIREBASE_databaseURL=
+REACT_APP_FIREBASE_projectId=
+REACT_APP_FIREBASE_storageBucket=
+REACT_APP_FIREBASE_messagingSenderId=
+REACT_APP_FIREBASE_appId=
+REACT_APP_FIREBASE_measurementId=
 ```

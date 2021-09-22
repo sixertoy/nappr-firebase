@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { FirebaseAuthContext, renderer } from '../core';
+import { FirebaseContext } from '../context';
+import { renderer } from '../core';
 
 const IfFirebaseLoading = React.memo(({ loader }) => (
-  <FirebaseAuthContext.Consumer>
+  <FirebaseContext.Consumer>
     {state => {
       const { isReady } = state;
       if (isReady) return null;
       return renderer(loader, state);
     }}
-  </FirebaseAuthContext.Consumer>
+  </FirebaseContext.Consumer>
 ));
 
 IfFirebaseLoading.propTypes = {
