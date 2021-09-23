@@ -1,6 +1,6 @@
 {
   "name": "@nappr/firebase",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Firebase React Helper",
   "main": "lib/nappr-firebase.js",
   "module": "lib/nappr-firebase.esm.js",
