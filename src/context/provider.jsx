@@ -1,8 +1,10 @@
 import {
-  browserLocalPersistence,
-  browserSessionPersistence,
-  initializeAuth,
-  inMemoryPersistence,
+  // browserLocalPersistence,
+  // browserPopupRedirectResolver,
+  // browserSessionPersistence,
+  getAuth,
+  // initializeAuth,
+  // inMemoryPersistence,
   onAuthStateChanged,
   useDeviceLanguage,
 } from 'firebase/auth';
@@ -10,6 +12,7 @@ import { getDatabase } from 'firebase/database';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
+// import { version } from '../../package.json';
 import {
   // FIREBASE_ADMINS_TABLE_NAME,
   FIREBASE_DEFAULT_APPNAME,
@@ -33,16 +36,20 @@ const checkIfUserIsAdminRole = user => {
   //     return isadmin;
   //   })
   //   .catch(() => false);
-  return false;
+  return Promise.resolve(true);
 };
 
 const FirebaseProvider = ({ children, name }) => {
+  // eslint-disable-next-line
+  // console.log('@nappr/firebase version => ', version);
   const changeListener = useRef(null);
   const firebaseApp = initialize(name);
+  const firebaseAuth = getAuth(firebaseApp);
 
   const [state, setState] = useState({
     ...FIREBASE_DEFAULT_STATE,
     app: firebaseApp,
+    auth: firebaseAuth,
     db: getDatabase(firebaseApp),
   });
 
@@ -68,20 +75,23 @@ const FirebaseProvider = ({ children, name }) => {
 
   useEffect(() => {
     if (!changeListener.current) {
-      const auth = initializeAuth(firebaseApp, {
-        persistence: [
-          browserLocalPersistence,
-          browserSessionPersistence,
-          inMemoryPersistence,
-        ],
-      });
-      useDeviceLanguage(auth);
-      onAuthStateChanged(auth, onAuthChange);
-      changeListener.current = auth;
+      changeListener.current = true;
+      // const auth = initializeAuth(firebaseApp, {
+      //   persistence: [
+      //     browserLocalPersistence,
+      //     browserSessionPersistence,
+      //     inMemoryPersistence,
+      //   ],
+      //   popupRedirectResolver: browserPopupRedirectResolver,
+      // });
+      useDeviceLanguage(firebaseAuth);
+      onAuthStateChanged(firebaseAuth, onAuthChange);
     }
     return () => {
-      const removeChangedListener = changeListener.current;
-      removeChangedListener();
+      if (changeListener.current) {
+        const removeChangedListener = firebaseAuth;
+        removeChangedListener();
+      }
     };
   }, [firebaseApp, onAuthChange]);
 

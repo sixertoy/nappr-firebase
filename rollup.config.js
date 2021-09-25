@@ -1,5 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
+import strip from '@rollup/plugin-strip';
 import url from '@rollup/plugin-url';
 import builtins from 'builtin-modules';
 import babel from 'rollup-plugin-babel';
@@ -22,6 +24,7 @@ const globals = {
 
 const plugins = [
   url(),
+  json(),
   excludeDependenciesFromBundle(),
   resolve({ extensions: ['.js', '.jsx'] }),
   babel({
@@ -29,6 +32,7 @@ const plugins = [
     exclude: ['node_modules/**'],
     runtimeHelpers: true,
   }),
+  strip(),
   commonjs(),
   sizeSnapshot(),
   IS_DEVELOPMENT ? null : terser(),

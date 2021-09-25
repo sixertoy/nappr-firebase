@@ -1,6 +1,6 @@
 {
   "name": "@nappr/firebase",
-  "version": "0.3.6",
+  "version": "0.3.20",
   "description": "Firebase React Helper",
   "main": "lib/nappr-firebase.js",
   "module": "lib/nappr-firebase.esm.js",
@@ -25,7 +25,9 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
+    "@rollup/plugin-strip": "^2.1.0",
     "@rollup/plugin-url": "^6.1.0",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^12.1.0",
