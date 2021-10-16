@@ -7,8 +7,8 @@ import { renderer } from '../core';
 const IfFirebaseAuthed = React.memo(({ children }) => (
   <FirebaseContext.Consumer>
     {state => {
-      const { isSignedIn } = state;
-      if (!isSignedIn) return null;
+      const { isReady, isSignedIn } = state;
+      if (!isReady || !isSignedIn) return null;
       return renderer(children, state);
     }}
   </FirebaseContext.Consumer>

@@ -14,6 +14,7 @@ export const FIREBASE_PROVIDER_FACEBOOK = 'facebook.com';
 
 export const FIREBASE_DEFAULT_STATE = {
   app: {},
+  auth: null,
   db: null,
   isAdmin: false,
   isAnonymous: true,
