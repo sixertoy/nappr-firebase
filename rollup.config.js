@@ -25,12 +25,12 @@ const plugins = [
   url(),
   excludeDependenciesFromBundle(),
   resolve({ extensions: ['.js', '.jsx'] }),
-  strip(),
   babel({
     babelrc: true,
     exclude: ['node_modules/**'],
     runtimeHelpers: true,
   }),
+  strip(),
   commonjs(),
   sizeSnapshot(),
   IS_DEVELOPMENT ? null : terser(),
