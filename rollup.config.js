@@ -1,4 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import strip from '@rollup/plugin-strip';
 import url from '@rollup/plugin-url';
@@ -23,6 +24,7 @@ const globals = {
 
 const plugins = [
   url(),
+  json(),
   excludeDependenciesFromBundle(),
   resolve({ extensions: ['.js', '.jsx'] }),
   babel({
