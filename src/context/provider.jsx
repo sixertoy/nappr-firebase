@@ -43,6 +43,7 @@ const FirebaseProvider = ({ children, name }) => {
   const [state, setState] = useState({
     ...FIREBASE_DEFAULT_STATE,
     app: firebaseApp,
+    auth: null,
     db: getDatabase(firebaseApp),
   });
 
@@ -77,11 +78,14 @@ const FirebaseProvider = ({ children, name }) => {
       });
       useDeviceLanguage(auth);
       onAuthStateChanged(auth, onAuthChange);
-      changeListener.current = auth;
+      setState({ ...state, auth });
+      changeListener.current = true;
     }
     return () => {
-      const removeChangedListener = changeListener.current;
-      removeChangedListener();
+      if (changeListener.current) {
+        const removeChangedListener = state.auth;
+        removeChangedListener();
+      }
     };
   }, [firebaseApp, onAuthChange]);
 
