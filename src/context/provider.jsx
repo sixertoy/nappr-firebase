@@ -26,7 +26,7 @@ const checkIfUserIsAdminRole = user => {
   // elle composée de { [user.id]:  user.email }
   const userisvalid = user && user.uid;
   if (!userisvalid) {
-    return Promise.resolve(false);
+    return Promise.reject(new Error('User is not valid'));
   }
   // const { email, uid } = user;
   // return db
@@ -36,7 +36,7 @@ const checkIfUserIsAdminRole = user => {
   //     return isadmin;
   //   })
   //   .catch(() => false);
-  return false;
+  return Promise.resolve(true);
 };
 
 const FirebaseProvider = ({ children, name }) => {
