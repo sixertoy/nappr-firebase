@@ -49,6 +49,8 @@ const FirebaseProvider = ({ children, name }) => {
 
   const onAuthChange = useCallback(
     user => {
+      // eslint-disable-next-line
+      console.log('@nappr/firebase provider::onAuthChange', user);
       const next = {
         ...state,
         isAdmin: false,
@@ -77,10 +79,11 @@ const FirebaseProvider = ({ children, name }) => {
           inMemoryPersistence,
         ],
       });
-      console.log('auth', auth);
       useDeviceLanguage(auth);
       setState({ ...state, auth });
       onAuthStateChanged(auth, onAuthChange);
+      // eslint-disable-next-line
+      console.log('@nappr/firebase provider::useEffect', auth);
     }
     return () => {
       if (changeListener.current) {

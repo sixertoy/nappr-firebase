@@ -1,5 +1,6 @@
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
+import strip from '@rollup/plugin-strip';
 import url from '@rollup/plugin-url';
 import builtins from 'builtin-modules';
 import babel from 'rollup-plugin-babel';
@@ -24,6 +25,7 @@ const plugins = [
   url(),
   excludeDependenciesFromBundle(),
   resolve({ extensions: ['.js', '.jsx'] }),
+  strip(),
   babel({
     babelrc: true,
     exclude: ['node_modules/**'],

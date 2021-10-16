@@ -7,7 +7,6 @@ import { renderer } from '../core';
 const IfFirebaseNotAuthed = React.memo(({ children }) => (
   <FirebaseContext.Consumer>
     {state => {
-      console.log('state', state);
       const { isReady, isSignedIn } = state;
       if (!isReady || isSignedIn) return null;
       return renderer(children, state);
