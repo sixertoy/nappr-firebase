@@ -77,6 +77,7 @@ const FirebaseProvider = ({ children, name }) => {
         ],
       });
       useDeviceLanguage(auth);
+      setState({ ...state, auth });
       onAuthStateChanged(auth, onAuthChange);
       setState({ ...state, auth });
       changeListener.current = true;
