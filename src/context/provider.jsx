@@ -1,6 +1,7 @@
 import {
   browserLocalPersistence,
   browserSessionPersistence,
+  getAuth,
   initializeAuth,
   inMemoryPersistence,
   onAuthStateChanged,
@@ -49,10 +50,12 @@ const FirebaseProvider = ({ children, name }) => {
 
   const onAuthChange = useCallback(
     user => {
+      const auth = getAuth(firebaseApp);
       // eslint-disable-next-line
-      console.log('@nappr/firebase provider::onAuthChange > user', user);
+      console.log('@nappr/firebase provider::onAuthChange > user', auth);
       const next = {
         ...state,
+        auth,
         isAdmin: false,
         isAnonymous: (user && user.isAnonymous) || true,
         isReady: true,
@@ -81,7 +84,6 @@ const FirebaseProvider = ({ children, name }) => {
       });
       useDeviceLanguage(auth);
       onAuthStateChanged(auth, onAuthChange);
-      setState({ ...state, auth });
       // eslint-disable-next-line
       console.log('@nappr/firebase provider::useEffect > auth', auth);
     }
