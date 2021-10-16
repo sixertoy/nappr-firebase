@@ -11,6 +11,7 @@ import { getDatabase } from 'firebase/database';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
+import { version } from '../../package.json';
 import {
   // FIREBASE_ADMINS_TABLE_NAME,
   FIREBASE_DEFAULT_APPNAME,
@@ -38,6 +39,8 @@ const checkIfUserIsAdminRole = user => {
 };
 
 const FirebaseProvider = ({ children, name }) => {
+  // eslint-disable-next-line
+  console.log('@nappr/firebase version => ', version);
   const changeListener = useRef(null);
   const firebaseApp = initialize(name);
 
