@@ -26,7 +26,7 @@ const checkIfUserIsAdminRole = user => {
   // elle composée de { [user.id]:  user.email }
   const userisvalid = user && user.uid;
   if (!userisvalid) {
-    return Promise.reject(new Error('User is not valid'));
+    return Promise.resolve(false);
   }
   // const { email, uid } = user;
   // return db
