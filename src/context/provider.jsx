@@ -69,6 +69,7 @@ const FirebaseProvider = ({ children, name }) => {
 
   useEffect(() => {
     if (!changeListener.current) {
+      changeListener.current = true;
       const auth = initializeAuth(firebaseApp, {
         persistence: [
           browserLocalPersistence,
@@ -76,11 +77,10 @@ const FirebaseProvider = ({ children, name }) => {
           inMemoryPersistence,
         ],
       });
+      console.log('auth', auth);
       useDeviceLanguage(auth);
       setState({ ...state, auth });
       onAuthStateChanged(auth, onAuthChange);
-      setState({ ...state, auth });
-      changeListener.current = true;
     }
     return () => {
       if (changeListener.current) {
