@@ -1649,6 +1649,13 @@
     magic-string "^0.25.7"
     resolve "^1.17.0"
 
+"@rollup/plugin-json@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-json/-/plugin-json-4.1.0.tgz#54e09867ae6963c593844d8bd7a9c718294496f3"
+  integrity sha512-yfLbTdNS6amI/2OpmbiBoW12vngr5NW2jCJVZSBEz+H5KfUJZ2M7sDjk0U6GOOdCWFVScShte29o9NezJ53TPw==
+  dependencies:
+    "@rollup/pluginutils" "^3.0.8"
+
 "@rollup/plugin-node-resolve@^13.0.5":
   version "13.0.5"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-13.0.5.tgz#016abe58796a4ff544d6beac7818921e3d3777fc"
@@ -1669,6 +1676,15 @@
     "@rollup/pluginutils" "^3.1.0"
     magic-string "^0.25.7"
 
+"@rollup/plugin-strip@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-strip/-/plugin-strip-2.1.0.tgz#04c2d2ccfb2c6b192bb70447fbf26e336379a333"
+  integrity sha512-OKlIlXMFlH4nVxq0beNSIKVw0LkpNUpVjjvfzH5OAOAR5dhLZgLZBzwYX4ifIAs18YDrreMcZH4xnKmW9fI2AQ==
+  dependencies:
+    "@rollup/pluginutils" "^3.1.0"
+    estree-walker "^2.0.1"
+    magic-string "^0.25.7"
+
 "@rollup/plugin-url@^6.1.0":
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-url/-/plugin-url-6.1.0.tgz#1234bba9aa30b5972050bdfcf8fcbb1cb8070465"
@@ -1678,7 +1694,7 @@
     make-dir "^3.1.0"
     mime "^2.4.6"
 
-"@rollup/pluginutils@^3.1.0":
+"@rollup/pluginutils@^3.0.8", "@rollup/pluginutils@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.1.0.tgz#706b4524ee6dc8b103b3c995533e5ad680c02b9b"
   integrity sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==
@@ -5896,9 +5912,9 @@ minimatch@^3.0.4:
     brace-expansion "^1.1.7"
 
 minimist@^1.2.0, minimist@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
-  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
+  integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
 mississippi@^3.0.0:
   version "3.0.0"
