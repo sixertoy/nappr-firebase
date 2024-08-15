@@ -1,12 +1,11 @@
 import { initializeApp } from 'firebase/app';
 
-import {
-  FIREBASE_ERR_DUPLICATE_APP,
-  // IS_DEVELOPMENT,
-} from '../constants';
-import getConfig from './get-config';
+import {} from // IS_DEVELOPMENT,
+'../constants';
+import { FirebaseErrors } from '../enums';
+import { getConfig } from './get-config';
 
-function initialize(name) {
+export function initialize(name: string) {
   const config = getConfig();
   let app = null;
   try {
@@ -14,11 +13,10 @@ function initialize(name) {
     // const useAnalytics = !IS_DEVELOPMENT && config.measurementId;
     // if (useAnalytics) app.analytics();
   } catch (err) {
-    if (err.code !== FIREBASE_ERR_DUPLICATE_APP) {
+    const { code } = err as { code: string };
+    if (code !== FirebaseErrors.FIREBASE_ERR_DUPLICATE_APP) {
       throw err;
     }
   }
   return app;
 }
-
-export default initialize;

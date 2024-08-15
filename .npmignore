@@ -1,4 +1,5 @@
 .*
 src/
 coverage/
-rollup.config.js
+vite.config.*
+rollup.config.*

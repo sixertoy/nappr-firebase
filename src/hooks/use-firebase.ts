@@ -6,5 +6,3 @@ export const useFirebase = () => {
   const state = useContext(FirebaseContext);
   return { ...state };
 };
-
-export default useFirebase;

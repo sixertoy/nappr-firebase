@@ -1,1 +1,10 @@
-
+**/tmp/*
+**/temp/*
+**/dist/*
+**/build/*
+**/public/*
+**/scripts/*
+**/.scripts/*
+**/coverage/*
+**/node_modules/*
+**/__snapshots__/*
