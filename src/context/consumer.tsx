@@ -1,7 +1,8 @@
+import type { ContextStateInterface } from '../interfaces';
 import { FirebaseContext } from './context';
 
 interface FirebaseConsumerProps {
-  children: (value: any) => JSX.Element;
+  children: (value: ContextStateInterface) => JSX.Element;
 }
 
 export const FirebaseConsumer = ({ children }: FirebaseConsumerProps) => (

@@ -1,3 +1,4 @@
+import type { User } from 'firebase/auth';
 import {
   // browserLocalPersistence,
   // browserPopupRedirectResolver,
@@ -12,16 +13,15 @@ import { getDatabase } from 'firebase/database';
 import type { PropsWithChildren } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-// import { version } from '../../package.json';
+import { APP_VERSION } from '../constants';
 import { initialize } from '../core';
-import { Options } from '../enums';
 import { FirebaseContext } from './context';
 
 interface FirebaseProviderProps extends Required<PropsWithChildren> {
   name: string;
 }
 
-const checkIfUserIsAdminRole = (user) => {
+const checkIfUserIsAdminRole = (user: User) => {
   // NOTE la table `allowedContributors` est commune à tous les projets
   // elle composée de { [user.id]:  user.email }
   const userisvalid = user && user.uid;
@@ -39,26 +39,31 @@ const checkIfUserIsAdminRole = (user) => {
   return Promise.resolve(true);
 };
 
-const FirebaseProvider = ({
-  children,
-  name = Options.DEFAULT_APPNAME,
-}: FirebaseProviderProps) => {
-  // console.log('@nappr/firebase version => ', version);
+const FirebaseProvider = ({ children, name }: FirebaseProviderProps) => {
+  // eslint-disable-next-line no-console
+  console.log('@nappr/firebase version => ', APP_VERSION);
+
   const changeListener = useRef(null);
+
   const firebaseApp = initialize(name);
   const firebaseAuth = getAuth(firebaseApp);
 
   const [state, setState] = useState({
-    ...Options.DEFAULT_STATE,
     app: firebaseApp,
     auth: firebaseAuth,
     db: getDatabase(firebaseApp),
+    isAdmin: false,
+    isAnonymous: true,
+    isReady: false,
+    isSignedIn: false,
+    providerId: null,
+    token: null,
+    user: null,
   });
 
   const onAuthChange = useCallback(
-    (user) => {
+    (user: User | null) => {
       const next = {
-        ...state,
         isAdmin: false,
         isAnonymous: (user && user.isAnonymous) || true,
         isReady: true,
@@ -69,7 +74,7 @@ const FirebaseProvider = ({
       };
 
       checkIfUserIsAdminRole(user).then((isAdmin) => {
-        setState({ ...next, isAdmin });
+        setState((prev) => ({ ...prev, ...next, isAdmin }));
       });
     },
     [firebaseApp],

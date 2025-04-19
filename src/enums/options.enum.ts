@@ -1,6 +1,5 @@
 export enum Options {
   KEY_PREFIX = 'FIREBASE_',
-  DEFAULT_APPNAME = 'DEFAULT',
   ADMINS_TABLE_NAME = 'allowedContributors',
   PROVIDER_EMAIL = 'email',
   PROVIDER_ANON = 'anonymous',

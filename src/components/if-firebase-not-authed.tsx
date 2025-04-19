@@ -13,8 +13,14 @@ const IfFirebaseNotAuthed = React.memo(
     <FirebaseContext.Consumer>
       {(state) => {
         const { isReady, isSignedIn } = state;
-        if (!isReady) return null;
-        if (isSignedIn) return (or && or(state)) || null;
+        if (!isReady) {
+          return null;
+        }
+
+        if (isSignedIn) {
+          return (or && or(state)) || null;
+        }
+
         return renderer(children, state);
       }}
     </FirebaseContext.Consumer>

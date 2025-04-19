@@ -1,7 +1,9 @@
 import React from 'react';
 
-import { FIREBASE_DEFAULT_STATE } from '../constants';
+import type { ContextStateInterface } from '../interfaces';
 
-export const FirebaseContext = React.createContext(FIREBASE_DEFAULT_STATE);
+export const FirebaseContext = React.createContext<
+  ContextStateInterface | undefined
+>(undefined);
 
 FirebaseContext.displayName = 'FirebaseContext';

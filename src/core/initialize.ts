@@ -1,7 +1,5 @@
 import { initializeApp } from 'firebase/app';
 
-import {} from // IS_DEVELOPMENT,
-'../constants';
 import { FirebaseErrors } from '../enums';
 import { getConfig } from './get-config';
 

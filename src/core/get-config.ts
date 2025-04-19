@@ -15,6 +15,9 @@ export const getConfig = () => {
     return [name, value];
   });
 
-  const config = reword.reduce((a, [k, v]) => ({ ...a, [k]: v }), {});
+  const config = reword.reduce(
+    (a, [k, v]) => ({ ...a, [k as unknown as string]: v }),
+    {},
+  );
   return config;
 };
